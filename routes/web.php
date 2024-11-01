@@ -13,5 +13,6 @@ Route::post('users/log-sign/login/store',[LoginController::class,'store']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('main/shop/home', [MainController::class, 'home'])->name('home');
+    Route::get('/admin', [MainController::class, 'admin'])->name('admin');
 });
 Route::get('/logout',[MainController::class,'logout'])->name('logout');

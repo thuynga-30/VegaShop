@@ -42,12 +42,17 @@ class LoginController extends Controller
             'email' => 'required|email:filter',
             'password' => 'required'
         ]); 
+       
+        
         if (Auth::attempt([
             'email'=> $request-> input('email'),
             'password' => $request-> input('password')
-        ],  )) { 
-            
-            return redirect()->route('home');
+        ], $request->input('remember')  )) { 
+            if (Auth::user()->role == 'admin'){
+                return redirect()->route('admin');
+            } else {
+                return redirect()->route('home');
+            }
         }
         Session:: flash('error','Email hoặc Password không đúng');
         return redirect()->back();

@@ -25,4 +25,8 @@ class MainController extends Controller
         Auth::logout();
         return redirect()->route('index'); 
     }
+    public function admin(){
+        echo "Admin";
+       
+    }
 }
